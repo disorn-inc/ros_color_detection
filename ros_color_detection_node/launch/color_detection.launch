@@ -1,0 +1,9 @@
+<launch>
+
+  
+  <rosparam file="$(find ros_color_detection_node)/config/common_color.yaml" />
+  <node pkg="ros_color_detection_node" type="ColorDetectionNode.py" name="ColorDetectionNode"  output="screen" >
+
+  </node>
+
+</launch>

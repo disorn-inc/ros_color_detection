@@ -1,0 +1,4 @@
+sensor_msgs/Image img
+---
+ros_color_detection_msgs/ColorD main_color
+ros_color_detection_msgs/ColorDList main_colors
