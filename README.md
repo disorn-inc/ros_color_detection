@@ -9,13 +9,14 @@ the project provides a ros node for getting the dominant colors of a given image
 
 
 1 launch file is available getting the configuration from the common_color.yaml file:
+```python
   #number of dominant color to extract
   kmean_cluster: 3
   #Test image color location
   imgtest_folder: "/home/jsaraydaryan/ros_robotcupathome_ws/src/people_management/ros_color_detection/ros_color_detection_node/data"
   #Displayed resulted clustering currently not working
   is_process_displayed: True
-
+```
 
 ## 3. Node
 
