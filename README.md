@@ -22,26 +22,28 @@ the project provides a ros node for getting the dominant colors of a given image
 
  ### 3.1  Subscribed Topics
 
-  #### 4.1.1 topic /image ([sensor_msgs/Image](http://docs.ros.org/api/sensor_msgs/html/msg/Image.html))
+  #### 3.1.1 topic /image ([sensor_msgs/Image](http://docs.ros.org/api/sensor_msgs/html/msg/Image.html))
    Incoming images for color detection
         
  ### 3.2 Published Topics
-  #### 4.2.1 topic /image_color ([ros_color_detection/ColorDList](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_msgs/msg/ColorD.msg))
+  #### 3.2.1 topic /image_color ([ros_color_detection/ColorDList](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_msgs/msg/ColorD.msg))
    List of dominant colors and associated names
 
             
  ### 3.3 Services
-  #### 4.3.1 detect_color_srv ([ros_color_detection/ros_color_detection_srvs](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_srvs/srv/DetectColorFromImg.srv))
+  #### 3.3.1 detect_color_srv ([ros_color_detection/ros_color_detection_srvs](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_srvs/srv/DetectColorFromImg.srv))
    Get main colors of the given image
   
  ### 3.4 Action
- #### 4.3.1 detect_color_action ([ros_face_recognition/LearnFace](https://github.com/jacques-saraydaryan/ros_face_recognition/blob/master/srv/LearnFace.srv))
+ #### 3.4.1 detect_color_action ([ros_face_recognition/LearnFace](https://github.com/jacques-saraydaryan/ros_face_recognition/blob/master/srv/LearnFace.srv))
  Get main colors of the given image
 
-### 4.4  Params
- #### 4.4.1 kmean_cluster (int,default: 3)
+### 3.4  Params
+ ####  kmean_cluster (int,default: 3)
+  number of dominant colors processed
+ 
+ #### imgtest_folder (string)
   face_folder contains the initial labeled faces, these images are loaded at the node start
- 
- #### 4.4.2 imgtest_folder (string)
- 
- #### 4.4.3 is_process_displayed (bool, default: false) 
+  
+ #### is_process_displayed (bool, default: false) 
+  display the image processed
