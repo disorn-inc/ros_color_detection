@@ -20,45 +20,18 @@ the project provides a ros node for getting the dominant colors of a given image
 
 ## 3. Node
 
-### 3.1  Messages
-### 3.1.1 ColorD Message
-
-Message holding color information, color names, rgb color, hsv color
-
-string color_name
-# color name without correction (black, white, gray)
-string color_temp
-# closest web color name
-string color_web
-# custom black, white, gray, dark brightness name
-string color_brightness_name
-# rgb[0]=R, rgb[1]=G, rgb[2]=B
-float32[] rgb
-# hsv[0]=H, hsv[1]=S, hsv[2]=V
-float32[] hsv
-# percentage of the current color into the image (after kmean clusterisation)
-float32 percentage_of_img
-
-### 3.1.2 ColorDList Message
-Message holding main colors information
-
-ros_color_detection_msgs/ColorD[] colorList
-
  ### 3.1  Subscribed Topics
-
- self.sub_rgb = rospy.Subscriber("/image", Image, self.rgb_callback, queue_size=1)
-        self.pub_color = rospy.Publisher("/image_color", ColorDList, queue_size=1)
 
   #### 4.1.1 topic /image ([sensor_msgs/Image](http://docs.ros.org/api/sensor_msgs/html/msg/Image.html))
    Incoming images for color detection
         
  ### 3.2 Published Topics
-  #### 4.2.1 topic /image_color ([ros_color_detection/ColorDList])
+  #### 4.2.1 topic /image_color ([ros_color_detection/ColorDList](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_msgs/msg/ColorD.msg))
    List of dominant colors and associated names
 
             
  ### 3.3 Services
-  #### 4.3.1 detect_color_srv ([ros_face_recognition/LearnFace](https://github.com/jacques-saraydaryan/ros_face_recognition/blob/master/srv/LearnFace.srv))
+  #### 4.3.1 detect_color_srv ([ros_color_detection/ros_color_detection_srvs](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_srvs/srv/DetectColorFromImg.srv))
    Get main colors of the given image
   
  ### 3.4 Action
