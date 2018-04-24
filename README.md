@@ -13,7 +13,7 @@ the project provides a ros node for getting the dominant colors of a given image
   #number of dominant color to extract
   kmean_cluster: 3
   #Test image color location
-  imgtest_folder: "/home/jsaraydaryan/ros_robotcupathome_ws/src/people_management/ros_color_detection/ros_color_detection_node/data"
+  imgtest_folder: "../data"
   #Displayed resulted clustering currently not working
   is_process_displayed: True
 ```
@@ -34,7 +34,7 @@ the project provides a ros node for getting the dominant colors of a given image
   #### detect_color_srv ([ros_color_detection/ros_color_detection_srvs](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_srvs/srv/DetectColorFromImg.srv))
    Get main colors of the given image
   
- ### 4.4 Action
+ ### 4.4 Actions
  #### detect_color_action ([ros_color_detection/ros_color_detection_actions](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_actions/action/DetectColorFromImg.action))
  Get main colors of the given image
 
