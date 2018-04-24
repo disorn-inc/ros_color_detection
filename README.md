@@ -7,7 +7,7 @@ the project provides a ros node for getting the dominant colors of a given image
   * The given clusters are named fixing S and V with the average S and V values of the cluster and selecting the webcolor closest to the given value
   * Another simple color name is given fixing V value to 1 and testing Gray, black an white value through fixed threshold
   
-  ![Plane Simulator](https://github.com/jacques-saraydaryan/ros_color_detection/tree/master/img/ColorDetection.png "Image processing steps to extract main colors")
+  ![Image Color Detection](https://github.com/jacques-saraydaryan/ros_color_detection/tree/master/img/ColorDetection.png "Image processing steps to extract main colors")
 
 ## 3. Configuration
 1 launch file is available getting the configuration from the common_color.yaml file:
