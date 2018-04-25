@@ -5,7 +5,7 @@ the project provides a ros node for getting the dominant colors of a given image
   * The RGB color image is transformed into HSV Color image
   * The Kmean clustering approach is used on the H of the HSV color image values.
   * The given clusters are named fixing S and V with the average S and V values of the cluster and selecting the webcolor closest to the given value
-  * Another simple color name is given fixing V value to 1 and testing Gray, black an white value through fixed threshold
+  * Another simple color name is given fixing V value to 1 and testing Gray, Black an White values through fixed threshold
   
   ![Image Color Detection](https://github.com/jacques-saraydaryan/ros_color_detection/tree/master/img/ColorDetection.png "Image processing steps to extract main colors")
 
