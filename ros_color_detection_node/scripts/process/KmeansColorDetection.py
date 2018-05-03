@@ -33,9 +33,13 @@ class ClusterLocal:
         self.V_sum=self.V_sum+v
 
     def getSAvg(self):
+        if len(self.pixelList) ==0:
+            return 0
         return float(self.S_sum)/float(len(self.pixelList))
 
     def getVAvg(self):
+        if len(self.pixelList) ==0:
+            return 0
         return float(self.V_sum)/float(len(self.pixelList))
 
     def getValue(self):
@@ -98,8 +102,7 @@ class KmeansColorDetection():
         if self._isImgDisplayed:
             #curently not working plt.show work only in main thread
             #self.displayResult(imgHSV,imgHSVOnlyH,kmeans.cluster_centers_,clusters,w,h)
-            #pass
-        
+            pass
         return clusters
 
 

@@ -13,6 +13,7 @@ import cv2
 from skimage import color
 import numpy as np
 
+from sensor_msgs.msg import Image
 from ros_color_detection_msgs.msg import ColorD, ColorDList
 from ros_color_detection_actions.msg import DetectColorFromImgAction, DetectColorFromImgResult
 from ros_color_detection_srvs.srv import DetectColorFromImg
