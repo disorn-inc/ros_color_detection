@@ -8,8 +8,10 @@ the project provides a ros node for getting the dominant colors of a given image
   * Another simple color name is given fixing V value to 1 and testing Gray, Black an White values through fixed threshold
   
   ![Image Color Detection](https://github.com/jacques-saraydaryan/ros_color_detection/tree/master/img/ColorDetection.png "Image processing steps to extract main colors")
+## 3. Authors
+* Jacques Saraydaryan
 
-## 3. Configuration
+## 4. Configuration
 1 launch file is available getting the configuration from the common_color.yaml file:
 ```python
   #number of dominant color to extract
@@ -20,27 +22,27 @@ the project provides a ros node for getting the dominant colors of a given image
   is_process_displayed: True
 ```
 
-## 4. Node
+## 5. Node
 
- ### 4.1  Subscribed Topics
+ ### 5.1  Subscribed Topics
 
   #### /image ([sensor_msgs/Image](http://docs.ros.org/api/sensor_msgs/html/msg/Image.html))
    Incoming images for color detection
         
- ### 4.2 Published Topics
+ ### 5.2 Published Topics
   #### /image_color ([ros_color_detection/ColorDList](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_msgs/msg/ColorD.msg))
    List of dominant colors and associated names
 
             
- ### 4.3 Services
+ ### 5.3 Services
   #### detect_color_srv ([ros_color_detection/ros_color_detection_srvs](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_srvs/srv/DetectColorFromImg.srv))
    Get main colors of the given image
   
- ### 4.4 Actions
+ ### 5.4 Actions
  #### detect_color_action ([ros_color_detection/ros_color_detection_actions](https://github.com/jacques-saraydaryan/ros_color_detection/blob/master/ros_color_detection_actions/action/DetectColorFromImg.action))
  Get main colors of the given image
 
-### 4.5  Params
+### 5.5  Params
  ####  kmean_cluster (int,default: 3)
   number of dominant colors processed
  
