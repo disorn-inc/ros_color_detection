@@ -138,7 +138,7 @@ class ColorDetectionNode():
             if "DARK" is not label_brightnes:
                 color_name_result=label_brightnes
             else:
-                color_name_result=label_brightnes + " " +simpleColorFromOriginal
+                color_name_result=str(label_brightnes) + " " +str(simpleColorFromOriginal)
         else:
              color_name_result=simpleColorFromOriginal
 
