@@ -129,16 +129,16 @@ class ColorDetectionNode():
 
         #FIXME currently not give expected result
         label_brightnes=self._color_to_name.black_white_gray_detector(None,cluster.getValue()[1]*100,cluster.getValue()[2]*100)
-        rospy.loginfo("------------------V MAX: %s, V AVG: %s, S AVG: %s --------------------", str(cluster.max_V_value),str(cluster.getVAvg()),str(cluster.getSAvg()))
-        rospy.loginfo( '------------------VALUE BLACK,GREY,WHITE: %s --------------------',str(label_brightnes))
-        rospy.loginfo( '------------------NOT MODIFIED COLOR: %s --------------------',str(closest_name_original_value))
+        rospy.logdebug("------------------V MAX: %s, V AVG: %s, S AVG: %s --------------------", str(cluster.max_V_value),str(cluster.getVAvg()),str(cluster.getSAvg()))
+        rospy.logdebug( '------------------VALUE BLACK,GREY,WHITE: %s --------------------',str(label_brightnes))
+        rospy.logdebug( '------------------NOT MODIFIED COLOR: %s --------------------',str(closest_name_original_value))
         simpleColorFromOriginal=self._color_to_name.simpleColor(closest_name_max_value.upper())
         color_name_result=''
         if None is not label_brightnes:
             if "DARK" is not label_brightnes:
                 color_name_result=label_brightnes
             else:
-                color_name_result=label_brightnes + " " +simpleColorFromOriginal
+                color_name_result=str(label_brightnes) + " " +str(simpleColorFromOriginal)
         else:
              color_name_result=simpleColorFromOriginal
 

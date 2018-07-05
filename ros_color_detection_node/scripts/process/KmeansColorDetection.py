@@ -9,6 +9,7 @@ from time import time
 import cv2
 from skimage import io, color
 from skimage import img_as_float
+from skimage.viewer import ImageViewer
 
 class ClusterLocal:
     def __init__(self,label):
@@ -60,6 +61,7 @@ class KmeansColorDetection():
     def __init__(self,n_color,isImgDisplayed):
         self._n_color=n_color
         self._isImgDisplayed=isImgDisplayed
+        self.fig=None
 
     def process_image(self,img):
         imgRGB=img[:, :, ::-1]
@@ -85,23 +87,23 @@ class KmeansColorDetection():
         assert d == 3
         image_array = np.reshape(imgHSVOnlyH, (w * h, d))
 
-        print("Fitting model on a small sub-sample of the data")
+        #print("Fitting model on a small sub-sample of the data")
         t0 = time()
         image_array_sample = shuffle(image_array, random_state=0)[:1000]
         kmeans = KMeans(n_clusters=self._n_color,tol=5, random_state=0).fit(image_array_sample)
-        print("done in %0.3fs." % (time() - t0))
+        #print("done in %0.3fs." % (time() - t0))
 
         # Get labels for all points
-        print("Predicting color indices on the full image (k-means)")
+        #print("Predicting color indices on the full image (k-means)")
         t0 = time()
         labels = kmeans.predict(image_array)
-        print("done in %0.3fs." % (time() - t0))
+        #print("done in %0.3fs." % (time() - t0))
 
         clusters=self.process_kmean_result(imgHSV,kmeans.cluster_centers_, labels, w, h)
 
         if self._isImgDisplayed:
             #curently not working plt.show work only in main thread
-            #self.displayResult(imgHSV,imgHSVOnlyH,kmeans.cluster_centers_,clusters,w,h)
+            self.displayResult(imgHSV,imgHSVOnlyH,kmeans.cluster_centers_,clusters,w,h)
             pass
         return clusters
 
@@ -154,34 +156,48 @@ class KmeansColorDetection():
         for cluster in clusters.values():
             data = np.zeros(shape=(1, 1, 3), dtype=np.float64)
             data[0,0,:]=cluster.getValue()
-            print "Cluster[%s]: HSV:%s, RGB:%s, nbPixel:[%s], imgPercentage:%s" % (str(cluster.label),str((cluster.getValue()[0]*360,cluster.getValue()[1]*100,cluster.getValue()[2]*100)),str(color.hsv2rgb(data)*255),str(cluster.getNbPixel()),str(float(cluster.getNbPixel())/float(pixelSum)))
+            #print "Cluster[%s]: HSV:%s, RGB:%s, nbPixel:[%s], imgPercentage:%s" % (str(cluster.label),str((cluster.getValue()[0]*360,cluster.getValue()[1]*100,cluster.getValue()[2]*100)),str(color.hsv2rgb(data)*255),str(cluster.getNbPixel()),str(float(cluster.getNbPixel())/float(pixelSum)))
         
         return clusters
 
     def displayResult(self,imgHSV,imgHSVOnlyH,codebook,clusters,w,h):
 
-        plt.figure(1)
-        plt.clf()
-        ax = plt.axes([0, 0, 1, 1])
-        plt.axis('on')
-        plt.title('Original image imgHSV')
-        plt.imshow(color.hsv2rgb(imgHSV))
-        plt.pause(.1)
+        #im1 = Image.frombytes("RGB", (w, h), imgHSV)
+        #im1.show()
 
+        #viewer = ImageViewer(color.hsv2rgb(imgHSV))
+        #viewer.show()
+        #cv2.imshow('image',imgHSV)
 
-        plt.figure(2)
-        plt.clf()
-        ax = plt.axes([0, 0, 1, 1])
-        plt.axis('on')
-        plt.title('Original image imgHSVOnlyH')
-        plt.imshow(color.hsv2rgb(imgHSVOnlyH))
-        plt.pause(.1)
-
-        plt.figure(3)
-        plt.clf()
-        ax = plt.axes([0, 0, 1, 1])
+        if( self.fig == None):
+            self.fig=plt.figure(figsize=(8, 2))
+        #plt.clf()
+        #ax = plt.axes([0, 0, 1, 1])
         plt.axis('off')
-        plt.title('Quantized image (64 colors, K-Means)')
+        #plt.title('Original image imgHSV')
+        a=self.fig.add_subplot(1, 4, 1)
+        a.set_title('Original image', fontsize=8)
+        plt.imshow(color.hsv2rgb(imgHSV), aspect='auto')
+        plt.pause(.1)
+        #plt.tight_layout()
+
+
+        #plt.figure(2)
+        #plt.clf()
+        #ax = plt.axes([0, 0, 1, 1])
+        plt.axis('off')
+        #plt.title('Original image imgHSVOnlyH')
+        b=self.fig.add_subplot(1, 4, 2)
+        b.set_title('Image with only H set (HSV)', fontsize=8)
+        plt.imshow(color.hsv2rgb(imgHSVOnlyH), aspect='auto')
+        plt.pause(.1)
+        #plt.tight_layout()
+
+        #plt.figure(3)
+        #plt.clf()
+        #ax = plt.axes([0, 0, 1, 1])
+        plt.axis('off')
+        #plt.title('Quantized image (64 colors, K-Means)')
         image=self.recreate_image(codebook,clusters,w,h,-1)
         max_size=0
         label_max=0
@@ -189,17 +205,23 @@ class KmeansColorDetection():
             if cluster.getNbPixel() >max_size:
                 max_size=cluster.getNbPixel()
                 label_max=cluster.label
-
-        plt.imshow(color.hsv2rgb(image))
+        c=self.fig.add_subplot(1, 4, 3)
+        c.set_title('K-Means '+str(self._n_color) +' clusters', fontsize=8)
+        plt.imshow(color.hsv2rgb(image), aspect='auto')
         plt.pause(.1)
+        #plt.tight_layout()
 
-        plt.figure(4)
-        plt.clf()
-        ax = plt.axes([0, 0, 1, 1])
+        #plt.figure(4)
+        #plt.clf()
+        #ax = plt.axes([0, 0, 1, 1])
         plt.axis('off')
-        plt.title('Quantized image (64 colors, K-Means)')
+        #plt.title('Quantized image (64 colors, K-Means)')
         image2=self.recreate_image(codebook,clusters,w,h,label_max)
-        plt.imshow(color.hsv2rgb(image2))
+        d=self.fig.add_subplot(1, 4, 4)
+        d.set_title('Main color cluster', fontsize=8)
+        plt.imshow(color.hsv2rgb(image2), aspect='auto')
         plt.pause(.1)
+        plt.axis('off')
+        #plt.tight_layout()
 
         #plt.show()
