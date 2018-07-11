@@ -56,3 +56,17 @@ the project provides a ros node for getting the dominant colors of a given image
   
  #### is_process_displayed (bool, default: false) 
   display the image processed
+
+## 6. How to test
+
+Start the main node
+
+```
+roslaunch ros_color_detection_node color_detection.launch
+```
+
+Call the Action Test node
+
+```
+rosrun ros_color_detection_node ColorDetectionNodeTestAction.py
+```
