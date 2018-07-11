@@ -15,8 +15,8 @@ def LoadImgAndUseAction():
     test_folder=rospy.get_param('imgtest_folder','/data')
 
     #Load Image
-    #img_loaded1 = cv2.imread(test_folder+'/blue-short.jpg')
-    img_loaded1 = cv2.imread(test_folder+'/top-purple.jpg')
+    img_loaded1 = cv2.imread(test_folder+'/blue-short.jpg')
+    #img_loaded1 = cv2.imread(test_folder+'/top-purple.jpg')
     msg_im1 = _bridge.cv2_to_imgmsg(img_loaded1, encoding="bgr8")
 
     client = actionlib.SimpleActionClient('detect_color_action', DetectColorFromImgAction)

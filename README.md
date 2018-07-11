@@ -7,7 +7,12 @@ the project provides a ros node for getting the dominant colors of a given image
   * The given clusters are named fixing S and V with the average S and V values of the cluster and selecting the webcolor closest to the given value
   * Another simple color name is given fixing V value to 1 and testing Gray, Black an White values through fixed threshold
   
-  ![Image Color Detection](https://github.com/jacques-saraydaryan/ros_color_detection/tree/master/img/ColorDetection.png "Image processing steps to extract main colors")
+  ![Image Color Detection kmean 3](img/colorkmean3.png "Image processing steps to extract main colors")
+  <br/> Color Detection with kmean=3<br/>
+  ![Image Color Detection kmean 5](img/colorkmean5.png "Image processing steps to extract main colors")
+  <br/> Color Detection with kmean=5<br/>
+  ![Image Color Detection kmean 10](img/colorkmean10.png "Image processing steps to extract main colors")
+  <br/> Color Detection with kmean=10<br/>
 ## 3. Authors
 * Jacques Saraydaryan
 
