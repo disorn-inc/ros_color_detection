@@ -1,6 +1,5 @@
 <launch>
 
-  
   <rosparam file="$(find ros_color_detection_node)/config/common_color.yaml" />
   <param name="imgtest_folder" value="$(find ros_color_detection_node)/data"/>
   <node pkg="ros_color_detection_node" type="ColorDetectionNode.py" name="ColorDetectionNode"  output="screen" >

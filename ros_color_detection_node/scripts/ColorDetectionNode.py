@@ -44,7 +44,7 @@ class ColorDetectionNode():
         self.sub_rgb = rospy.Subscriber("/image", Image, self.rgb_callback, queue_size=1)
         self.pub_color = rospy.Publisher("/image_color", ColorDList, queue_size=1)
 
-        #declare ros service 
+        #declare ros service _isImgDisplayed
         self.detectColorSrv = rospy.Service('detect_color_srv', DetectColorFromImg, self.detectColorSrvCallback)
 
          # create action server and start it
@@ -61,9 +61,9 @@ class ColorDetectionNode():
 
     def configure(self):
         #load face files form data directory
-        self.NB_KMEAN_CLUSTER=rospy.get_param('kmean_cluster',3)
+        self.NB_KMEAN_CLUSTER=rospy.get_param('/color_detection/kmean_cluster',3)
         rospy.loginfo("Param: kmean_cluster:"+str(self.NB_KMEAN_CLUSTER))
-        self.IS_PROCESS_DISPLAYED=rospy.get_param('is_process_displayed',False)
+        self.IS_PROCESS_DISPLAYED=rospy.get_param('/color_detection/is_process_displayed',False)
         rospy.loginfo("Param: is_process_displayed:"+str(self.IS_PROCESS_DISPLAYED))
 
     def rgb_callback(self, data):

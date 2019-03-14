@@ -7,7 +7,7 @@ string color_web
 string color_brightness_name
 # rgb[0]=R, rgb[1]=G, rgb[2]=B
 float32[] rgb
-# hsv[0]=H, hsv[1]=S, hsv[2]=V
+# hsv[0]=H, hsv[1]=S, hsv[2]=V : H*360 S*100 V*100 to get usual hsv values
 float32[] hsv
 # percentage of the current color into the image (after kmean clusterisation)
 float32 percentage_of_img

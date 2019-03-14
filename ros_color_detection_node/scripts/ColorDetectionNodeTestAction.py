@@ -12,7 +12,7 @@ import actionlib
 def LoadImgAndUseAction():
     rospy.init_node('color_detection_node_action_test', anonymous=False)
     _bridge = CvBridge()
-    test_folder=rospy.get_param('imgtest_folder','/data')
+    test_folder=rospy.get_param('/color_detection/imgtest_folder','/data')
 
     #Load Image
     img_loaded1 = cv2.imread(test_folder+'/blue-short.jpg')
